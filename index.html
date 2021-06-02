@@ -1,9 +1,63 @@
-<!-- # Github API Notes:
-# https://api.github.com/repos/vuejs/vue
+<!--
+# Instructions: https://github.com/acltc/js-framework-watcher
+
+# Github API Notes:
+https://github.com/vuejs/vue
+https://github.com/angular/angular.js
+https://github.com/emberjs/ember.js/
+https://github.com/sveltejs/svelte
+https://github.com/facebook/react
+
 # Fields we care about:
 # Watch = subscribers_count
 # Star = stargazers_count or watchers_count or watchers
 # Fork = forks_count or forks
+
 # Docs: https://docs.github.com/en/rest/reference/repos
-# Short-Term Idea: show point-in-time popularity (cards for each language)
-# Long-Term Idea: somehow show popularity over time? pull a request every day and add to an array for each language? -->
+<!-- use chart.js -->
+<!-- # Bar Graph: show point-in-time popularity (cards for each language) # Long-Term Idea: Line Graph: somehow show
+popularity over time? pull a request every day and add to an array for each language? -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Front-End Frameworks</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>Vue.js</h1>
+    <ul>
+      <li>Stars</li>
+      <li>Watchers</li>
+      <li>Forks</li>
+    </ul>
+    <h1>Angular.js</h1>
+    <ul>
+      <li>Stars</li>
+      <li>Watchers</li>
+      <li>Forks</li>
+    </ul>
+    <h1>Ember.js</h1>
+    <ul>
+      <li>Stars</li>
+      <li>Watchers</li>
+      <li>Forks</li>
+    </ul>
+    <h1>Svelte.js</h1>
+    <ul>
+      <li>Stars</li>
+      <li>Watchers</li>
+      <li>Forks</li>
+    </ul>
+    <h1>React.js</h1>
+    <ul>
+      <li>Stars</li>
+      <li>Watchers</li>
+      <li>Forks</li>
+    </ul>
+  </body>
+</html>
