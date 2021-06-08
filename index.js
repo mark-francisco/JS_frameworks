@@ -1,5 +1,3 @@
-/* global axios */
-
 // <!--
 // # Instructions: https://github.com/acltc/js-framework-watcher
 
@@ -10,21 +8,14 @@
 // https://github.com/sveltejs/svelte
 // https://github.com/facebook/react
 
-// # Fields we care about:
-// # Watch = subscribers_count
-// # Star = stargazers_count or watchers_count or watchers
-// # Fork = forks_count or forks
-
 // # Docs: https://docs.github.com/en/rest/reference/repos
-// <!-- use chart.js -->
-// <!-- # Bar Graph: show point-in-time popularity (cards for each language) # Long-Term Idea: Line Graph: somehow show
-// popularity over time? pull a request every day and add to an array for each language? -->
 
-// <!-- ############ -->
 
-// <!-- figure out how to get data from axios into JS Language objects -->
-// <!-- then, pass that data forward into HTML somehow -->
 
+
+
+
+/* global axios */
 
 function Language(name, watchers, stars, forks) {
   this.name = name;
@@ -32,21 +23,54 @@ function Language(name, watchers, stars, forks) {
   this.stars = stars;
   this.forks = forks;
 }
-// Language.prototype.methodNameHere = function () {
-//   return "this is where you would define the fn's behavior";
-// };
-let vue = new Language("Vue", 1, 2, 3);
-
-// let angular = {};
-// let ember = {};
-// let svelte = {};
-// let react = {};
 
 axios.get("https://api.github.com/repos/vuejs/vue")
   .then(function (response) {
+    // # Watchers = subscribers_count
+    // # Stars = stargazers_count
+    // # Forks = forks_count
     let vue = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    // console.log(response.data);
     console.log(vue);
+    document.querySelector("#vue-name").innerHTML = vue.name;
+    document.querySelector("#vue-watchers").innerHTML = vue.watchers;
+    document.querySelector("#vue-stars").innerHTML = vue.stars;
+    document.querySelector("#vue-forks").innerHTML = vue.forks;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+axios.get("https://api.github.com/repos/angular/angular.js")
+  .then(function (response) {
+    let angular = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
+    console.log(angular);
+    document.querySelector("#angular-name").innerHTML = angular.name;
+    document.querySelector("#angular-watchers").innerHTML = angular.watchers;
+    document.querySelector("#angular-stars").innerHTML = angular.stars;
+    document.querySelector("#angular-forks").innerHTML = angular.forks;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+axios.get("https://api.github.com/repos/emberjs/ember.js")
+  .then(function (response) {
+    let ember = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
+    console.log(ember);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+axios.get("https://api.github.com/repos/sveltejs/svelte")
+  .then(function (response) {
+    let svelte = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
+    console.log(svelte);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+axios.get("https://api.github.com/repos/facebook/react")
+  .then(function (response) {
+    let react = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
+    console.log(react);
   })
   .catch(function (error) {
     console.log(error);
