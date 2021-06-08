@@ -1,7 +1,5 @@
-// <!--
 // # Instructions: https://github.com/acltc/js-framework-watcher
-
-// # Github API Notes:
+// # Github pages:
 // https://github.com/vuejs/vue
 // https://github.com/angular/angular.js
 // https://github.com/emberjs/ember.js/
@@ -10,68 +8,43 @@
 
 // # Docs: https://docs.github.com/en/rest/reference/repos
 
-
-
-
-
-
 /* global axios */
-
-function Language(name, watchers, stars, forks) {
+// instantiate constructor
+function Language(name, author, watchers, stars, forks) {
   this.name = name;
+  this.author = author;
   this.watchers = watchers;
   this.stars = stars;
   this.forks = forks;
 }
+// create array of languages to compare
+let languages = [];
+languages.push(new Language("vue", "vuejs", "", "", ""));
+languages.push(new Language("angular.js", "angular", "", "", ""));
+languages.push(new Language("ember.js", "emberjs", "", "", ""));
+languages.push(new Language("svelte", "sveltejs", "", "", ""));
+languages.push(new Language("react", "facebook", "", "", ""));
+console.log(languages);
+// feature idea: do a GET INDEX to populate name and author for all JS framework libraries. then, let the user select 5 libraries to compare stats on graph.
 
-axios.get("https://api.github.com/repos/vuejs/vue")
-  .then(function (response) {
-    // # Watchers = subscribers_count
-    // # Stars = stargazers_count
-    // # Forks = forks_count
-    let vue = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    console.log(vue);
-    document.querySelector("#vue-name").innerHTML = vue.name;
-    document.querySelector("#vue-watchers").innerHTML = vue.watchers;
-    document.querySelector("#vue-stars").innerHTML = vue.stars;
-    document.querySelector("#vue-forks").innerHTML = vue.forks;
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-axios.get("https://api.github.com/repos/angular/angular.js")
-  .then(function (response) {
-    let angular = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    console.log(angular);
-    document.querySelector("#angular-name").innerHTML = angular.name;
-    document.querySelector("#angular-watchers").innerHTML = angular.watchers;
-    document.querySelector("#angular-stars").innerHTML = angular.stars;
-    document.querySelector("#angular-forks").innerHTML = angular.forks;
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-axios.get("https://api.github.com/repos/emberjs/ember.js")
-  .then(function (response) {
-    let ember = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    console.log(ember);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-axios.get("https://api.github.com/repos/sveltejs/svelte")
-  .then(function (response) {
-    let svelte = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    console.log(svelte);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-axios.get("https://api.github.com/repos/facebook/react")
-  .then(function (response) {
-    let react = new Language(response.data.name, response.data.subscribers_count, response.data.stargazers_count, response.data.forks_count);
-    console.log(react);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+let i = 0;
+for (let i = 0; i < 5; i++) {
+  axios.get(`https://api.github.com/repos/${languages[i]["author"]}/${languages[i]["name"]}`)
+    .then(function (response) {
+      // Name = name, Watchers = subscribers_count, Stars = stargazers_count, Forks = forks_count
+      languages[i]["watchers"] = response.data.subscribers_count;
+      languages[i]["stars"] = response.data.stargazers_count;
+      languages[i]["forks"] = response.data.forks_count;
+    
+      document.querySelector(`#name-${i}`).innerHTML = languages[i]["name"];
+      document.querySelector(`#watchers-${i}`).innerHTML = languages[i]["watchers"];
+      document.querySelector(`#stars-${i}`).innerHTML = languages[i]["stars"];
+      document.querySelector(`#forks-${i}`).innerHTML = languages[i]["forks"];
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+
+
