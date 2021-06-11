@@ -76,8 +76,27 @@ setTimeout(function makeChart() {
           borderWidth: 1,
         },
         {
-          label: "Watchers",
-          data: [languages[0]["watchers"],languages[1]["watchers"],languages[2]["watchers"],languages[3]["watchers"],languages[4]["watchers"],],
+          label: "Stars",
+          data: [languages[0]["stars"],languages[1]["stars"],languages[2]["stars"],languages[3]["stars"],languages[4]["stars"],],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+          borderWidth: 1,
+        },
+        {
+          label: "Forks",
+          data: [languages[0]["forks"],languages[1]["forks"],languages[2]["forks"],languages[3]["forks"],languages[4]["forks"],],
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -106,3 +125,10 @@ setTimeout(function makeChart() {
     },
   });
 }, 100);
+
+
+function doStuff() {
+  // "await"
+  // get the data. once it's done.
+  // make the chart.
+}
